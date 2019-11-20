@@ -1,5 +1,6 @@
 var express = require('express');
 var eddeRouter=express.Router();
+var {studentModel}=require('../models/studentModel')
   
 function route(nav){
 
@@ -11,7 +12,17 @@ function route(nav){
 
     eddeRouter.route('/save')
     .post((req,res)=>{
-        console.log(req.body);
+        if(req.body.btn=="delete"){
+            studentModel.deleteOne({admno:req.body.admnno},(err,data)=>{
+                if(err){
+                    res.json({status:"failed"});
+                }
+                else{
+                    res.json({status:"Success"});
+                }
+            })
+        }
+       // console.log(req.body);
     })
     return eddeRouter;
 }

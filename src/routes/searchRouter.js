@@ -27,7 +27,7 @@ function route(nav){
                 }
 
         });
-        console.log(req.body); 
+       // console.log(req.body); 
     }
     )
 

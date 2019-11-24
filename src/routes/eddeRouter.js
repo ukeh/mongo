@@ -10,6 +10,19 @@ function route(nav){
         res.render("edde.ejs",{nav,title:"Edit/Delete"});
     });
 
+    eddeRouter.route('/update')
+    .post((req,res)=>{        
+        studentModel.findOneAndUpdate({admno:req.body.admno},req.body,(err,data)=>{
+           if(err){
+               res.json({status:err})
+           }
+           else{
+               res.json({status:"Success"})
+           }
+        })
+    })
+
+
     eddeRouter.route('/save')
     .post((req,res)=>{
         if(req.body.btn=="delete"){
